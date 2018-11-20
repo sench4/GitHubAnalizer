@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <object th:fragment="repositorySearchControl-css" th:remove="tag">
+        <link type="text/css" rel="stylesheet" th:href="@{/web-resources/static/css/repositorySearchControl.css}"/>
+    </object>
+    <object th:fragment="repositorySearchControl-js" th:remove="tag">
+        <script type="text/babel" th:src="@{/web-resources/static/jsx/Loading.jsx}"></script>
+        <script type="text/babel" th:src="@{/web-resources/static/jsx/RepositorySearchControl.jsx}"></script>
+        <script type="text/babel" th:inline="javascript">
+            ReactDOM.render(<RepositorySearchControl/>, document.getElementById('repositorySearchControl'));
+        </script>
+    </object>
+</head>
+<body>
+    <object th:fragment="repositorySearchControl" th:remove="tag">
+        <div class="col-xs-4 col-sm-4 col-md-4"></div>
+        <div id="repositorySearchControl" style="text-align: center;" class="col-xs-4 col-sm-4 col-md-4">
+            <div class="searchContainer">
+                <div th:replace="fragments/common :: loading-small" th:remove="tag"></div>
+            </div>
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4"></div>
+    </object>
+</body>
+</html>
