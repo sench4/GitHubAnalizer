@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Git Hub Analizer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <object th:replace="fragments/common :: common-bootstrap-css" th:remove="tag"></object>
+    <object th:replace="fragments/common :: loading-css" th:remove="tag"></object>
+    <object th:replace="fragments/common :: common-css" th:remove="tag"></object>
+    <object th:replace="fragments/search :: repositorySearchControl-css" th:remove="tag"></object>
+
+    <object th:replace="fragments/common :: common-bootstrap-js" th:remove="tag"></object>
+    <object th:replace="fragments/common :: common-js" th:remove="tag"></object>
+    <object th:replace="fragments/common :: common-react" th:remove="tag"></object>
+    <object th:replace="fragments/common :: common-notify-js"></object>
+    <object th:replace="fragments/search :: repositorySearchControl-js" th:remove="tag"></object>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/web-resources/static/css/analytics.css}" />
+    <script type="text/javascript" th:src="@{/web-resources/static/js/analytics.js?1}"></script>
+
+    <script type="text/javascript" th:inline="javascript">
+        $(function () {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                var tab = $(e.target).attr("href").substring(1);
+
+                if($('#'+tab).find('div').find('div').hasClass('loading')){
+                    var repositoryName = /*[[${repository}]]*/'';
+                    var ownerName = /*[[${owner}]]*/'';
+
+                    if(tab == 'commiters'){
+                        loadCommitters(tab, repositoryName, ownerName);
+                    }
+                    else if(tab == 'impacts'){
+                        loadImpacts(tab, repositoryName, ownerName);
+                    }
+                    else if(tab == 'commits'){
+                        loadCommits(tab, repositoryName, ownerName);
+                    }
+                }
+            });
+
+            $('.nav-tabs').find('li:first-child').find('a').trigger('click');
+        })
+    </script>
+</head>
+<body>
+<div th:replace="fragments/search :: repositorySearchControl" th:remove="tag"/>
+
+<div class="container" style="padding-top: 150px">
+    <h3 th:text="${'Project: ' + repository}"></h3>
+    <ul class="nav nav-tabs">
+        <li>
+            <a href="#commits" data-toggle="tab">
+                <span>Latest 100 commits</span>
+            </a>
+        </li>
+        <li>
+            <a href="#impacts" data-toggle="tab">
+                <span>Impacts (latest 100 commits)</span>
+            </a>
+        </li>
+        <li>
+            <a href="#commiters" data-toggle="tab">
+                <span>All Commiters</span>
+            </a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="commits" class="tab-pane fade">
+            <div style="padding-left: 50%;padding-top: 10px;">
+                <div class="loading" style="display: inline-block;"><div>Loading…</div></div>
+            </div>
+        </div>
+        <div id="impacts" class="tab-pane fade">
+            <div style="padding-left: 50%;padding-top: 10px;">
+                <div class="loading" style="display: inline-block;"><div>Loading…</div></div>
+            </div>
+        </div>
+        <div id="commiters" class="tab-pane fade">
+            <div style="padding-left: 50%;padding-top: 10px;">
+                <div class="loading" style="display: inline-block;"><div>Loading…</div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

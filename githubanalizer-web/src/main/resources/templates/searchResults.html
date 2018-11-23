@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Git Hub Analizer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <object th:replace="fragments/common :: common-bootstrap-css" th:remove="tag"></object>
+    <object th:replace="fragments/common :: loading-css" th:remove="tag"></object>
+    <object th:replace="fragments/common :: common-css" th:remove="tag"></object>
+    <object th:replace="fragments/search :: repositorySearchControl-css" th:remove="tag"></object>
+
+    <object th:replace="fragments/common :: common-bootstrap-js" th:remove="tag"></object>
+    <object th:replace="fragments/common :: common-js" th:remove="tag"></object>
+    <object th:replace="fragments/common :: common-react" th:remove="tag"></object>
+    <object th:replace="fragments/common :: common-notify-js"></object>
+    <object th:replace="fragments/search :: repositorySearchControl-js" th:remove="tag"></object>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/web-resources/static/css/searchResults.css}" />
+</head>
+<body>
+    <div th:replace="fragments/search :: repositorySearchControl" th:remove="tag"/>
+
+    <div style="padding-top: 150px">
+    <table id="searchResultTable" class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <th>Repo ID</th>
+            <th>Repository Name</th>
+            <th>Owner Name</th>
+            <th>Full Name</th>
+        </thead>
+        <tbody>
+        <th:block th:each="repository : ${repositories.items}">
+            <tr>
+                <td th:text="${repository.id}"></td>
+                <td>
+                    <a th:text="${repository.name}" th:href="@{/analytics(repositoryName=${repository.name},ownerName=${repository.owner.login})}"></a>
+                </td>
+                <td th:text="${repository.owner.login}"></td>
+                <td th:text="${repository.fullName}"></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+    </div>
+</body>
+</html>

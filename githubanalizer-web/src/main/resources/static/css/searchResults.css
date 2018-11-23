@@ -1,0 +1,19 @@
+hr{
+    width: 100%;
+    color: black;
+    height: 1px;
+}
+
+.searchResultTable{
+    margin: auto;
+    width: 50% !important;
+}
+
+.searchResultTable>thead>th{
+    text-align: center;
+}
+
+.link{
+    color: blue;
+    text-decoration: underline;
+}

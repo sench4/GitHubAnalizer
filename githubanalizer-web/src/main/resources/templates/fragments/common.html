@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <object th:fragment="loading-css" th:remove="tag">
+        <link type="text/css" rel="stylesheet" th:href="@{/web-resources/static/css/loading.css}"/>
+    </object>
+    <object th:fragment="common-css" th:remove="tag">
+        <link type="text/css" rel="stylesheet" th:href="@{/web-resources/static/css/common.css}"/>
+    </object>
+    <object th:fragment="common-js" th:remove="tag">
+        <script type="text/javascript" th:src="@{/web-resources/static/js/common.js}"></script>
+    </object>
+    <object th:fragment="common-react" th:remove="tag">
+        <script type="text/javascript" th:src="@{/web-resources/static/js/react/15.6.2/react.min.js}"></script>
+        <script type="text/javascript" th:src="@{/web-resources/static/js/react/15.6.2/react-dom.min.js}"></script>
+        <script type="text/javascript" th:src="@{/web-resources/static/js/react/15.6.2/babel.min.js}"></script>
+    </object>
+    <object th:fragment="common-bootstrap-css" th:remove="tag">
+        <link rel="stylesheet" type="text/css" th:href="@{/web-resources/static/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    </object>
+    <object th:fragment="common-bootstrap-js" th:remove="tag">
+        <script type="text/javascript" th:src="@{/web-resources/static/webjars/jquery/js/jquery-3.2.1.min.js}"></script>
+        <script type="text/javascript" th:src="@{/web-resources/static/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+    </object>
+    <object th:fragment="common-notify-js" th:remove="tag">
+        <script type="text/javascript" th:src="@{/web-resources/static/js/notify.min.js}"></script>
+    </object>
+</head>
+<body>
+<div th:fragment="loading-small" th:remove="tag">
+    <div th:id="${id}" class="small loading" th:style="${style}"><div>Loading…</div></div>
+</div>
+</body>
+</html>
