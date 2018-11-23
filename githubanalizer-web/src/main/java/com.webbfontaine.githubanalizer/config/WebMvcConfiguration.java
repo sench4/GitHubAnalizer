@@ -13,6 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.List;
 
 /**
+ * Configuration class, which is responsible for configuring GitHubAnalizer web application MVC handlers
  * Created by Arsen Aleksanyan on 11/20/18.
  */
 @EnableWebMvc

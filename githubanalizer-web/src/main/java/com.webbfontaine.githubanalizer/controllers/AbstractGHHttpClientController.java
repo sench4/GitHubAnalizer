@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.client.HttpClientErrorException;
 
 /**
+ * This abstract controller class is designed to be a base class for all controllers which are using GitHub API client
+ * Currently this only handles common exceptions raised by GitHub API client
  * Created by Arsen Aleksanyan on 11/23/18.
  */
 public abstract class AbstractGHHttpClientController {
@@ -26,6 +28,12 @@ public abstract class AbstractGHHttpClientController {
     private static final String UNKNOWN_ERROR =
             "Unknown error occurred. Please reload or re-run the application.";
 
+
+    /**
+     * Handles GitHub API client errors
+     * @param e
+     * @return JSON error result to the caller of this controller
+     */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(HttpClientErrorException.class)
     @ResponseBody

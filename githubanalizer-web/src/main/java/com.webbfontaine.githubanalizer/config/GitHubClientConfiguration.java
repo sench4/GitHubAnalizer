@@ -15,6 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * Configuration class, which is responsible configuring GitHub API client with appropriate settings
  * Created by Arsen Aleksanyan on 11/23/18.
  */
 @Configuration

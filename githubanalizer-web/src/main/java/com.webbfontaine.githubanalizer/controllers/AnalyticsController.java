@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
+ * This controller is responsible to return analytics data from GitHub API client
  * Created by Arsen Aleksanyan on 11/21/18.
  */
 @Controller
@@ -35,19 +36,29 @@ public class AnalyticsController extends AbstractGHHttpClientController {
     @Autowired
     private GitHubClient gitHubClient;
 
+    /**
+     * This call is forwarding the request to the analytics page for the given repository name and owner login
+     * @param repositoryName
+     * @param ownerName
+     * @return
+     */
     @GetMapping("")
     public ModelAndView analyticPage(@RequestParam(name = "repositoryName") final String repositoryName,
-                                     @RequestParam(name = "ownerName") final String ownerName,
-                                     @RequestParam(name = "tab", defaultValue = "commiters") final String tab){
+                                     @RequestParam(name = "ownerName") final String ownerName){
 
         final Map<String, String> model = new HashMap<>();
         model.put("repository", repositoryName);
         model.put("owner", ownerName);
-        model.put("tab", tab);
 
         return new ModelAndView("analytics", model);
     }
 
+    /**
+     * This call returns JSON representation of all commiters for the given repository name and owner login name
+     * @param repositoryName
+     * @param ownerName
+     * @return
+     */
     @GetMapping("/commiters")
     @ResponseBody
     public ResponseEntity<CommiterDataSet> commiters(@RequestParam(name = "repositoryName") final String repositoryName,
@@ -71,6 +82,13 @@ public class AnalyticsController extends AbstractGHHttpClientController {
         return new ResponseEntity<>(commiters, HttpStatus.OK);
     }
 
+    /**
+     * This call returns JSON representation of user impacts (total commits) on the given repository name for given owner login name,
+     * based on latest 100 commits
+     * @param repositoryName
+     * @param ownerName
+     * @return
+     */
     @GetMapping("/impacts")
     @ResponseBody
     public ResponseEntity<ImpactDataList> impacts(@RequestParam(name = "repositoryName") final String repositoryName,
@@ -100,6 +118,12 @@ public class AnalyticsController extends AbstractGHHttpClientController {
         return new ResponseEntity<>(imactList, HttpStatus.OK);
     }
 
+    /**
+     * This call returns JSON representation of latest 100 commiters for given repository name and owner login name
+     * @param repositoryName
+     * @param ownerName
+     * @return
+     */
     @GetMapping("/commits")
     @ResponseBody
     public ResponseEntity<CommitDataList> commits(@RequestParam(name = "repositoryName") final String repositoryName,

@@ -16,9 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * This controller is responsible to return repository data from GitHub API client
  * Created by Arsen Aleksanyan on 11/20/18.
  */
-
 @Controller
 @RequestMapping("/repositories")
 public class RepositoriesController extends AbstractGHHttpClientController {
@@ -26,6 +26,13 @@ public class RepositoriesController extends AbstractGHHttpClientController {
     @Autowired
     private GitHubClient gitHubClient;
 
+    /**
+     * Searches public repository in GitHub for given repository name and returns the result in JSON format
+     * @param repo repository name
+     * @param pageNumber
+     * @param pageSize
+     * @return
+     */
     @GetMapping("/search")
     @ResponseBody
     public ResponseEntity<GHRepoSearchResultData> searchPublicRepository(
@@ -36,6 +43,14 @@ public class RepositoriesController extends AbstractGHHttpClientController {
         return new ResponseEntity<>(this.gitHubClient.searchPublicRepository(repo, pageNumber, pageSize).getBody(), HttpStatus.OK);
     }
 
+    /**
+     * Searches public repository in GitHub for given repository name and
+     * forwards to the search result page
+     * @param repo
+     * @param pageNumber
+     * @param pageSize
+     * @return
+     */
     @GetMapping("/search-result")
     public ModelAndView searchResult(
             @RequestParam("repo") final String repo,
