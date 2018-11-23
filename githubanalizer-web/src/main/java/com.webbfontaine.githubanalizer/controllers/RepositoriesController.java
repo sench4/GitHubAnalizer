@@ -21,7 +21,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/repositories")
-public class RepositoriesController {
+public class RepositoriesController extends AbstractGHHttpClientController {
 
     @Autowired
     private GitHubClient gitHubClient;

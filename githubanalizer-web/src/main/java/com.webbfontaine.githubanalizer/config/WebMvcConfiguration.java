@@ -6,12 +6,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -37,22 +35,9 @@ public class WebMvcConfiguration implements WebMvcConfigurer{
     }
 
     @Bean
-    @Qualifier("jsonConverter")
     public MappingJackson2HttpMessageConverter jsonConverter() {
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
         converter.setSupportedMediaTypes(MediaType.parseMediaTypes("application/json;charset=UTF-8"));
         return converter;
-    }
-
-    @Bean
-    @Qualifier("restTemplate")
-    public RestTemplate restTemplate(){
-        RestTemplate restTemplate = new RestTemplate();
-        List<HttpMessageConverter<?>> messageConverters = new LinkedList<>();
-        messageConverters.addAll(restTemplate.getMessageConverters());
-        messageConverters.add(jsonConverter());
-        restTemplate.setMessageConverters(messageConverters);
-
-        return restTemplate;
     }
 }

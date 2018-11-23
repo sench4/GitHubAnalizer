@@ -16,7 +16,12 @@ function loadCommitters(tab, repositoryName, ownerName){
             $tabContent.append($('<hr>'));
         });
     }).fail(function(xhr){
-        alert('Failed to load data. Try again!')
+        if(xhr && xhr.responseJSON && xhr.responseJSON.errorMessage){
+            alert(xhr.responseJSON.errorMessage);
+        }
+        else{
+            alert('Failed to load data. Try again!')
+        }
     });
 }
 
@@ -39,7 +44,12 @@ function loadCommits(tab, repositoryName, ownerName){
             $tabContent.append($('<hr>'));
         });
     }).fail(function(xhr){
-        alert('Failed to load data. Try again!')
+        if(xhr && xhr.responseJSON && xhr.responseJSON.errorMessage){
+            alert(xhr.responseJSON.errorMessage);
+        }
+        else{
+            alert('Failed to load data. Try again!')
+        }
     });
 }
 
@@ -61,6 +71,11 @@ function loadImpacts(tab, repositoryName, ownerName) {
             $tabContent.append($('<hr>'));
         });
     }).fail(function(xhr){
-        alert('Failed to load data. Try again!')
+        if(xhr && xhr.responseJSON && xhr.responseJSON.errorMessage){
+            alert(xhr.responseJSON.errorMessage);
+        }
+        else{
+            alert('Failed to load data. Try again!')
+        }
     });
 }

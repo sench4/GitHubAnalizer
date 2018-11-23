@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
  */
 @Controller
 @RequestMapping("/analytics")
-public class AnalyticsController {
+public class AnalyticsController extends AbstractGHHttpClientController {
 
     @Autowired
     private GitHubClient gitHubClient;

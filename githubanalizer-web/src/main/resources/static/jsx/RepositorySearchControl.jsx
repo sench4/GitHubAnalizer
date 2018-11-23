@@ -66,7 +66,12 @@ class RepositorySearchControl extends React.Component{
             })
             .fail(function(xhr){
                 _this.setState({open: false, loading: false});
-                alert('Search failed. Try again!')
+                if(xhr && xhr.responseJSON && xhr.responseJSON.errorMessage){
+                    alert(xhr.responseJSON.errorMessage);
+                }
+                else{
+                    alert('Failed to load data. Try again!')
+                }
             });
         }
         else{
